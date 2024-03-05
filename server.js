@@ -3,9 +3,9 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 
-const indexRouter = require('./routes/index')
-const authorRouter = require('./routes/authors')
-const bookRouter = require('./routes/book')
+const indexRouter = require('./routes/index.js')
+const authorRouter = require('./routes/authors.js')
+const bookRouter = require('./routes/book.js')
 
 const mongoose = require('mongoose');
 const env = require('./.env');
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 const connectDB = async () => {
     try {
         const connectionInsurance = await mongoose.connect("mongodb+srv://sethromandean002:satyam002@cluster0.tcmhfy2.mongodb.net/own");
-        console.log(`\n mongoDB connected !!`);
+        console.log(`\n mongoDB connected hui hui`);
     } catch (error) {
         console.log("MONGO DB connection failed ",error);
         process.exit(1);
@@ -28,10 +28,10 @@ const connectDB = async () => {
 
 connectDB()
 
-
 app.use('/', indexRouter)
 app.use('/authors',authorRouter);
 app.use('/books',bookRouter);
+console.log("hello",Date.now())
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
